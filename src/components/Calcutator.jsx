@@ -23,7 +23,7 @@ const Calculator = () => {
 
   const calculateCGPA = () => {
     // Validation check
-    if (courses.some(course => !course.marks || !course.credits)) {
+    if (courses.some((course) => !course.marks || !course.credits)) {
       setErrorMessage("Please provide marks and credits for all courses.");
       return;
     }
@@ -80,12 +80,14 @@ const Calculator = () => {
   };
 
   return (
-    <div className="bg-green-300 bg-secondary w-11/12 mt-8 relative mx-auto rounded-3xl py-10 px-8 items-center justify-center flex flex-col">
-    
-      <label className="font-fraunces">Enter the Number of Courses you toom this semester:</label>
+    <div className="ring-2 ring-[#246d49] w-7/12 mt-8 relative mx-auto rounded-3xl py-10 px-8 items-center justify-center flex flex-col mb-10">
+      <label className="font-fraunces text-black text-2xl">
+        Enter the Number of Courses you took This semester:
+      </label>
+      <br />
       <input
-      placeholder="course"
-      className="text-lg rounded-lg block  p-2.5"
+        placeholder="course"
+        className="text-lg rounded-lg block w-16 md:w-32 lg:w-48 p-2.5 ring-2 ring-[#246d49]"
         type="number"
         value={numCourses}
         onChange={(e) => setNumCourses(Math.max(0, parseInt(e.target.value)))}
@@ -96,27 +98,39 @@ const Calculator = () => {
       {numCourses > 0 &&
         [...Array(numCourses)].map((_, index) => (
           <div key={index}>
-            <label className=" font-fraunces">Course {index + 1} Marks:</label>
+            <br />
+            <label className=" text-black font-fraunces ">
+              Course {index + 1} Mark Out of 100:{" "}
+            </label>
             <input
-                  className="p-2.5 rounded-lg"
+              className="p-2.5 rounded-lg ml-3 mr-3 ring-2 ring-[#246d49]"
               type="number"
               name="marks"
               value={courses[index]?.marks || 0}
               onChange={(e) => handleInputChange(index, e)}
             />
 
-            <label className=" font-fraunces">Credits:</label>
+            <label className=" text-black font-fraunces">
+             Credit Hour:
+            </label>
             <input
-                  className="p-2.5 rounded-lg"
+              className="p-2.5 rounded-lg ring-2 ml-3 ring-[#246d49]"
               type="number"
               name="credits"
               value={courses[index]?.credits || 0}
               onChange={(e) => handleInputChange(index, e)}
             />
-<br/>
-            <button type="button" onClick={() => handleRemoveCourse(index)}>
+            <br />
+            <br />
+
+            <button
+              className=" rounded-full bg-[#246d49] text-white py-2 px-4 font-fraunces"
+              type="button"
+              onClick={() => handleRemoveCourse(index)}
+            >
               Remove
             </button>
+            <br />
           </div>
         ))}
 
@@ -124,19 +138,30 @@ const Calculator = () => {
 
       <br />
 
-      <button type="button" onClick={handleAddCourse}>
+      <button
+        className="ring-2 ring-[#246d49] rounded-full font-fraunces px-4 py-2"
+        type="button"
+        onClick={handleAddCourse}
+      >
         Add Course
       </button>
 
       <br />
 
-      <button className="bg-blue-300 rounded-full py-2 px-4 font-fraunces" type="button" onClick={calculateCGPA}>
+      <button
+        className="bg-[#246d49] text-white border-collapse rounded-full py-2 px-4 font-fraunces"
+        type="button"
+        onClick={calculateCGPA}
+      >
         Calculate
       </button>
 
       <br />
 
-      <h2>CGPA: {cgpa}</h2>
+      <h2 className="bg-[#effb8f] ring-2 ring-[#246d49] rounded-full py-2 px-4 font-fraunces">
+        {" "}
+        Semester (CGPA): {cgpa}
+      </h2>
     </div>
   );
 };
