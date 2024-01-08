@@ -4,6 +4,7 @@ const Calculator = () => {
   const [numCourses, setNumCourses] = useState(0);
   const [courses, setCourses] = useState([]);
   const [cgpa, setCGPA] = useState(0);
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     const savedNumCourses = localStorage.getItem("numCourses");
@@ -21,6 +22,12 @@ const Calculator = () => {
   }, [numCourses, courses]);
 
   const calculateCGPA = () => {
+    // Validation check
+    if (courses.some(course => !course.marks || !course.credits)) {
+      setErrorMessage("Please provide marks and credits for all courses.");
+      return;
+    }
+
     let totalCredits = 0;
     let totalGradePoints = 0;
 
@@ -50,6 +57,7 @@ const Calculator = () => {
 
     const calculatedCGPA = totalGradePoints / totalCredits;
     setCGPA(calculatedCGPA.toFixed(2));
+    setErrorMessage(""); // Clear any previous error message
   };
 
   const handleInputChange = (index, event) => {
@@ -72,40 +80,47 @@ const Calculator = () => {
   };
 
   return (
-    <div className=" border-gray-950 items-center justify-center flex flex-col">
-      <h1>CGPA Calculator</h1>
-      <label>Number of Courses:</label>
+    <div className="bg-green-300 bg-secondary w-11/12 mt-8 relative mx-auto rounded-3xl py-10 px-8 items-center justify-center flex flex-col">
+    
+      <label className="font-fraunces">Enter the Number of Courses you toom this semester:</label>
       <input
+      placeholder="course"
+      className="text-lg rounded-lg block  p-2.5"
         type="number"
         value={numCourses}
-        onChange={(e) => setNumCourses(parseInt(e.target.value))}
+        onChange={(e) => setNumCourses(Math.max(0, parseInt(e.target.value)))}
       />
 
       <br />
 
-      {[...Array(numCourses)].map((_, index) => (
-        <div key={index}>
-          <label>Course {index + 1} Marks:</label>
-          <input
-            type="number"
-            name="marks"
-            value={courses[index]?.marks || 0}
-            onChange={(e) => handleInputChange(index, e)}
-          />
+      {numCourses > 0 &&
+        [...Array(numCourses)].map((_, index) => (
+          <div key={index}>
+            <label className=" font-fraunces">Course {index + 1} Marks:</label>
+            <input
+                  className="p-2.5 rounded-lg"
+              type="number"
+              name="marks"
+              value={courses[index]?.marks || 0}
+              onChange={(e) => handleInputChange(index, e)}
+            />
 
-          <label>Credits:</label>
-          <input
-            type="number"
-            name="credits"
-            value={courses[index]?.credits || 0}
-            onChange={(e) => handleInputChange(index, e)}
-          />
+            <label className=" font-fraunces">Credits:</label>
+            <input
+                  className="p-2.5 rounded-lg"
+              type="number"
+              name="credits"
+              value={courses[index]?.credits || 0}
+              onChange={(e) => handleInputChange(index, e)}
+            />
+<br/>
+            <button type="button" onClick={() => handleRemoveCourse(index)}>
+              Remove
+            </button>
+          </div>
+        ))}
 
-          <button type="button" onClick={() => handleRemoveCourse(index)}>
-            Remove
-          </button>
-        </div>
-      ))}
+      {errorMessage && <div style={{ color: "red" }}>{errorMessage}</div>}
 
       <br />
 
@@ -115,8 +130,8 @@ const Calculator = () => {
 
       <br />
 
-      <button type="button" onClick={calculateCGPA}>
-        Calculate CGPA
+      <button className="bg-blue-300 rounded-full py-2 px-4 font-fraunces" type="button" onClick={calculateCGPA}>
+        Calculate
       </button>
 
       <br />
