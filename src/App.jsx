@@ -1,4 +1,6 @@
 import Calculator from "./components/Calcutator";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import Grades from "./components/grades";
 
 function App() {
   return (
@@ -7,12 +9,32 @@ function App() {
         Unity Grade Calculator
       </h1>
 
-      <Calculator />
+      <Router>
+        <div>
+          <nav className="text-center text-[#246d49]  font-fraunces mt-10 text-xl">
+            <ul className="flex justify-center gap-3">
+              <li className="bg-[#246d49] text-white border-collapse rounded-full py-2 px-4 font-fraunces">
+                <Link to="/">Home</Link>
+              </li>
+              <li className="bg-[#246d49] text-white border-collapse rounded-full py-2 px-4 font-fraunces">
+                <Link to="/grades">Grades</Link>
+              </li>
+            </ul>
+          </nav>
+
+          <hr />
+
+          <Routes>
+            <Route path="/" element={<Calculator />} />
+            <Route path="/grades" element={<Grades />} />
+          </Routes>
+        </div>
+      </Router>
+
       <div className="bg-[#246d49] mx-auto w-7/12  rounded-full px-3 mt-4">
         <div className="mb-6 flex justify-center py-2">
-        
           <a
-          target="blank"
+            target="blank"
             href="https://www.instagram.com/itskidus95/"
             type="button"
             className="m-1 h-9 w-9 rounded-full border-2 border-white uppercase leading-normal text-white transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0"
@@ -30,7 +52,7 @@ function App() {
           </a>
 
           <a
-          target="blank"
+            target="blank"
             href="https://www.linkedin.com/in/kidus-asebe-952a63279/"
             type="button"
             className="m-1 h-9 w-9 rounded-full border-2 border-white uppercase leading-normal text-white transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0"
@@ -48,7 +70,7 @@ function App() {
           </a>
 
           <a
-          target="blank"
+            target="blank"
             href="https://www.github.com/itskidus02/"
             type="button"
             className="m-1 h-9 w-9 rounded-full border-2 border-white uppercase leading-normal text-white transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0"
