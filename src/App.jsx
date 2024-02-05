@@ -1,4 +1,6 @@
-import Calculator from "./components/Calcutator";
+import Calculator from "./components/Calculator";
+import Grades from "./components/grades";
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 
 function App() {
   return (
