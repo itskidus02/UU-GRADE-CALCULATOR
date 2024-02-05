@@ -80,7 +80,7 @@ const Calculator = () => {
   };
 
   return (
-    <div className="ring-2 ring-[#246d49] w-7/12 mt-8 relative mx-auto rounded-3xl py-10 px-8 items-center justify-center flex flex-col mb-10">
+    <div className="ring-2 ring-[#246d49] w-5/6 sm:w-3/4 md:w-7/12 mt-8 relative mx-auto rounded-3xl py-10 px-8 items-center justify-center flex flex-col mb-10">
       <label className="font-fraunces text-black text-2xl">
         Enter the Number of Courses you took This semester:
       </label>
@@ -99,8 +99,10 @@ const Calculator = () => {
         [...Array(numCourses)].map((_, index) => (
           <div key={index}>
             <br />
+            <div className=" flex-1 sm:flex">
+            <div>
             <label className=" text-black font-fraunces ">
-              Course {index + 1} Mark Out of 100:{" "}
+             <span className=" font-semibold">Course {index + 1}</span>  Mark Out of 100:{" "}
             </label>
             <input
               className="p-2.5 rounded-lg ml-3 mr-3 ring-2 ring-[#246d49]"
@@ -110,6 +112,9 @@ const Calculator = () => {
               onChange={(e) => handleInputChange(index, e)}
             />
 
+            </div>
+
+            <div>
             <label className=" text-black font-fraunces">
              Credit Hour:
             </label>
@@ -120,6 +125,8 @@ const Calculator = () => {
               value={courses[index]?.credits || 0}
               onChange={(e) => handleInputChange(index, e)}
             />
+            </div>
+            </div>
             <br />
             <br />
 

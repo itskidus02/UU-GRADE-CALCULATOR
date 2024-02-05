@@ -1,6 +1,4 @@
 import Calculator from "./components/Calcutator";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import Grades from "./components/grades";
 
 function App() {
   return (
@@ -33,6 +31,7 @@ function App() {
 
       <div className="bg-[#246d49] mx-auto w-7/12  rounded-full px-3 mt-4">
         <div className="mb-6 flex justify-center py-2">
+        
           <a
             target="blank"
             href="https://www.instagram.com/itskidus95/"
