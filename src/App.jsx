@@ -6,7 +6,7 @@ function App() {
   return (
     <>
       <h1 className="text-center text-[#246d49] font-fraunces mt-14 text-4xl">
-        Unity Grade Calculator
+        Unity's Grade Calculator
       </h1>
 
       <Router>
