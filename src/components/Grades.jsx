@@ -14,7 +14,7 @@ const Grades = () => {
   ];
 
   return (
-    <div className="container font-fraunces  mt-4 rounded-3xl mx-auto p-4">
+    <div className="container w-7/12 font-fraunces  mt-4 rounded-3xl mx-auto p-4">
       
       <table className="min-w-full ring-2 ring-[#246d49] rounded-3xl ">
         <thead>

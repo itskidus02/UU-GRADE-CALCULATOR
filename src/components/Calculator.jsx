@@ -108,7 +108,7 @@ const Calculator = () => {
               className="p-2.5 rounded-lg ml-3 mr-3 ring-2 ring-[#246d49]"
               type="number"
               name="marks"
-              value={courses[index]?.marks || 0}
+              value={courses[index]?.marks || ''}
               onChange={(e) => handleInputChange(index, e)}
             />
 
@@ -122,7 +122,7 @@ const Calculator = () => {
               className="p-2.5 rounded-lg ring-2 ml-3 ring-[#246d49]"
               type="number"
               name="credits"
-              value={courses[index]?.credits || 0}
+              value={courses[index]?.credits || ''}
               onChange={(e) => handleInputChange(index, e)}
             />
             </div>
