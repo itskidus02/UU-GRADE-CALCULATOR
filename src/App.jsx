@@ -22,8 +22,7 @@ function App() {
             </ul>
           </nav>
 
-          <hr />
-
+        
           <Routes>
             <Route path="/" element={<Calculator />} />
             <Route path="/grades" element={<Grades />} />
